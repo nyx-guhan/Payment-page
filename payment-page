@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Critter Graphix - Social Media Services</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
+        
+        :root {
+            --primary-color: #580ccf;
+            --secondary-color: #ff5f9e;
+            --background-color: #f0f0f0;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .hero-section {
+            background: linear-gradient(to bottom right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 10px;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .hero-image {
+            flex: 1;
+            max-width: 400px;
+            animation: fadeInRight 1.5s ease-out;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .pricing-section {
+            padding: 4rem 2rem;
+            background-color: #f8f9fa;
+        }
+
+        .pricing-wrapper {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
+        }
+
+        .pricing-header {
+            height: 55px;
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 30px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .pricing-header label {
+            height: 100%;
+            z-index: 2;
+            width: 33.33%;
+            display: flex;
+            cursor: pointer;
+            font-size: 18px;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s ease;
+        }
+
+        .pricing-header .slider {
+            position: absolute;
+            height: 85%;
+            border-radius: inherit;
+            background: linear-gradient(145deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            transition: all 0.3s ease;
+        }
+
+        #tab-1:checked ~ .pricing-header .slider {
+            left: 0%;
+            width: 33.33%;
+        }
+
+        #tab-2:checked ~ .pricing-header .slider {
+            left: 33.33%;
+            width: 33.33%;
+        }
+
+        #tab-3:checked ~ .pricing-header .slider {
+            left: 66.66%;
+            width: 33.33%;
+        }
+
+        .pricing-wrapper input[type="radio"] {
+            display: none;
+        }
+
+        .card-area {
+            overflow: hidden;
+        }
+
+        .card-area .cards {
+            display: flex;
+            width: 300%;
+            transition: all 0.3s ease;
+        }
+
+        .cards .pricing-card {
+            width: 33.33%;
+            padding: 20px;
+        }
+
+        #tab-1:checked ~ .card-area .cards {
+            margin-left: 0%;
+        }
+
+        #tab-2:checked ~ .card-area .cards {
+            margin-left: -100%;
+        }
+
+        #tab-3:checked ~ .card-area .cards {
+            margin-left: -200%;
+        }
+
+        .pricing-card .price-details {
+            text-align: center;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #e6e6e6;
+        }
+
+        .price-details .price {
+            font-size: 65px;
+            font-weight: 600;
+            position: relative;
+            font-family: 'Noto Sans', sans-serif;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .price-details .currency-symbol {
+            font-size: 65px; /* Match the size of the amount */
+            font-weight: 700; /* Make the symbols bold */
+            margin-right: 10px; /* Space between the symbol and price */
+            vertical-align: middle; /* Align the symbol vertically with the price */
+            display: inline-block;
+        }
+
+        .price-details .price-period {
+            position: absolute;
+            right: -40px;
+            bottom: 17px;
+            font-size: 13px;
+            font-weight: 400;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .price-details p {
+            font-size: 18px;
+            margin-top: 5px;
+        }
+
+        .pricing-card .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            display: flex;
+            font-size: 15px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .feature-list li i {
+            background: linear-gradient(var(--primary-color) 0%, var(--secondary-color) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-right: 10px;
+        }
+
+        .btn-gradient {
+            width: 100%;
+            border-radius: 25px;
+            border: none;
+            outline: none;
+            height: 50px;
+            font-size: 18px;
+            color: #fff;
+            cursor: pointer;
+            margin-top: 20px;
+            background: linear-gradient(145deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            transition: transform 0.3s ease;
+        }
+
+        .btn-gradient:hover {
+            transform: scale(0.98);
+        }
+
+        .currency-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+            width: 220px;
+            height: 40px;
+            background-color: var(--background-color);
+            border-radius: 20px;
+            border: 1px solid var(--primary-color);
+            padding: 0;
+            margin: 0 auto; /* Center align horizontally */
+        }
+
+        .currency-toggle button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--primary-color);
+            transition: color 0.3s;
+            z-index: 1;
+            width: 50%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .currency-toggle button.active {
+            color: white;
+            font-weight: 700;
+        }
+
+        .currency-slider {
+            position: absolute;
+            width: 50%;
+            height: 80%;
+            background: var(--primary-color);
+            border-radius: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: left 0.3s;
+        }
+
+        .currency-toggle button:focus {
+            outline: none;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-image {
+                margin-top: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="display-4 fw-bold mb-4">Elevate Your Social Media Presence</h1>
+                        <p class="lead mb-4">Discover tailored solutions at Critter Graphix to boost your online presence. Our expert strategies and dedicated professionals empower your brand's digital journey.</p>
+                        <a href="#pricing" class="btn btn-light btn-lg">Enroll</a>
+                    </div>
+                    <div class="hero-image">
+                        <img src="image.jpeg" alt="Social Media Illustration" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="pricing-section">
+            <div class="container">
+                <h2 class="text-center mb-5">Choose Your Perfect Plan</h2>
+                <!-- Currency Toggle -->
+                <div class="currency-toggle">
+                    <div class="currency-slider" id="currency-slider"></div>
+                    <button id="inr-btn" class="active">INR</button>
+                    <button id="usd-btn">USD</button>
+                </div>
+                <div class="pricing-wrapper">
+                    <input type="radio" name="slider" id="tab-1">
+                    <input type="radio" name="slider" id="tab-2" checked>
+                    <input type="radio" name="slider" id="tab-3">
+                    <header class="pricing-header">
+                        <label for="tab-1" class="tab-1">Basic</label>
+                        <label for="tab-2" class="tab-2">Professional</label>
+                        <label for="tab-3" class="tab-3">Master</label>
+                        <div class="slider"></div>
+                    </header>
+                    <div class="card-area">
+                        <div class="cards">
+                            <!-- Basic Plan -->
+                            <div class="pricing-card">
+                                <div class="price-details">
+                                    <span class="currency-symbol">₹</span><span class="price" data-dollar="50" data-rupee="4000">4000</span>
+                                    <p>For beginner use</p>
+                                </div>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check"></i><span>2 Platform Management</span></li>
+                                    <li><i class="fas fa-check"></i><span>2 Posts Per Week</span></li>
+                                    <li><i class="fas fa-check"></i><span>Community Management</span></li>
+                                    <li><i class="fas fa-check"></i><span>Ad Campaign (Additional Budget)</span></li>
+                                </ul>
+                                <button class="btn-gradient">Get Started</button>
+                            </div>
+                            <!-- Professional Plan -->
+                            <div class="pricing-card">
+                                <div class="price-details">
+                                    <span class="currency-symbol">₹</span><span class="price" data-dollar="100" data-rupee="8000">8000</span>
+                                    <p>For professional use</p>
+                                </div>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check"></i><span>3 Platform Management</span></li>
+                                    <li><i class="fas fa-check"></i><span>3 Posts Per Week</span></li>
+                                    <li><i class="fas fa-check"></i><span>Community Management & Engagement</span></li>
+                                    <li><i class="fas fa-check"></i><span>Analytics Report</span></li>
+                                    <li><i class="fas fa-check"></i><span>Ad Campaign (Additional Budget)</span></li>
+                                </ul>
+                                <button class="btn-gradient">Get Started</button>
+                            </div>
+                            <!-- Master Plan -->
+                            <div class="pricing-card">
+                                <div class="price-details">
+                                    <span class="currency-symbol">₹</span><span class="price" data-dollar="200" data-rupee="16000">16000</span>
+                                    <p>For team collaboration</p>
+                                </div>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check"></i><span>4 Platform Management</span></li>
+                                    <li><i class="fas fa-check"></i><span>5 Posts Per Week</span></li>
+                                    <li><i class="fas fa-check"></i><span>Advanced Community Management</span></li>
+                                    <li><i class="fas fa-check"></i><span>Comprehensive Analytics</span></li>
+                                    <li><i class="fas fa-check"></i><span>Strategic Ad Campaigns</span></li>
+                                </ul>
+                                <button class="btn-gradient">Get Started</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center text-lg-start text-white" style="background-color: #580CCF; padding: 30px 0;">
+        <div class="container">
+          <div class="row align-items-start">
+            <!-- First Column -->
+            <div class="col-md-3 mb-4">
+              <h6 class="mb-3" style="font-size: 20px;">Subscribe to our Newsletter</h6>
+              <form class="form-inline">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+                  <div class="input-group-append">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- Second Column -->
+            <div class="col-md-3 mb-4">
+              <h6 class="mb-3" style="font-size: 20px;">Services</h6>
+              <p><a href="#" class="text-reset" style="text-decoration: none;">Email marketing</a></p>
+              <p><a href="#" class="text-reset" style="text-decoration: none;">Campaigns</a></p>
+              <p><a href="#" class="text-reset" style="text-decoration: none;">Branding</a></p>
+              <p><a href="#" class="text-reset" style="text-decoration: none;">Offline</a></p>
+            </div>
+            <!-- Third Column -->
+            <div class="col-md-3 mb-4">
+              <h6 class="mb-3" style="font-size: 20px;">About</h6>
+              <p><a href="#" class="text-reset" style="text-decoration: none;">Our Story</a></p>
+              <p><a href="#" class="text-reset" style="text-decoration: none;">Benefits</a></p>
+              <p><a href="#" class="text-reset" style="text-decoration: none;">Team</a></p>
+              <p><a href="#" class="text-reset" style="text-decoration: none;">Careers</a></p>
+            </div>
+            <!-- Fourth Column -->
+            <div class="col-md-3 mb-4">
+              <h6 class="mb-3" style="font-size: 20px;">Contact</h6>
+              <p class="mb-1">Critter Graphics</p>
+              <p class="mb-1">info@CritterGraphics.com</p>
+              <p class="mb-3">+91 8220210770</p>
+              
+              <!-- Social Media Icons -->
+              <div>
+                <a href="https://www.facebook.com/AmazonIN/" class="me-3 text-reset"><i class="bi bi-facebook" style="font-size: 24px;"></i></a>
+                <a href="https://twitter.com/amazon?" class="me-3 text-reset"><i class="bi bi-twitter" style="font-size: 24px;"></i></a>
+                <a href="https://www.instagram.com/amazon/" class="text-reset"><i class="bi bi-instagram" style="font-size: 24px;"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    
+    
+    
+    
+    <script>
+        const inrButton = document.getElementById('inr-btn');
+        const usdButton = document.getElementById('usd-btn');
+        const slider = document.getElementById('currency-slider');
+
+        inrButton.addEventListener('click', () => {
+            switchCurrency('INR');
+        });
+
+        usdButton.addEventListener('click', () => {
+            switchCurrency('USD');
+        });
+
+        function switchCurrency(currency) {
+            const prices = document.querySelectorAll('.price');
+            const currencySymbols = document.querySelectorAll('.currency-symbol');
+
+            if (currency === 'INR') {
+                inrButton.classList.add('active');
+                usdButton.classList.remove('active');
+                slider.style.left = '0%';
+                prices.forEach(price => {
+                    const rupeePrice = price.getAttribute('data-rupee');
+                    price.innerText = rupeePrice;
+                    price.previousElementSibling.innerText = '₹';
+                });
+            } else {
+                usdButton.classList.add('active');
+                inrButton.classList.remove('active');
+                slider.style.left = '50%';
+                prices.forEach(price => {
+                    const dollarPrice = price.getAttribute('data-dollar');
+                    price.innerText = dollarPrice;
+                    price.previousElementSibling.innerText = '$';
+                });
+            }
+        }
+
+        // Set INR as default active and display prices in INR initially
+        document.addEventListener('DOMContentLoaded', function() {
+            switchCurrency('INR');
+        });
+    </script>
+</body>
+</html>

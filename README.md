@@ -4,13 +4,13 @@ A simple payment page created using HTML, CSS, and JavaScript. The project focus
 
 Technologies Used
 
-HTML
-CSS
-JavaScript
+-HTML
+-CSS
+-JavaScript
 
 Features
 
-Responsive design
-Modern user interface
-Interactive payment button
-Simple and easy-to-use layout
+1)Responsive design
+2)Modern user interface
+3)Interactive payment button
+4)Simple and easy-to-use layout
